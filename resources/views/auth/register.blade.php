@@ -1,138 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IGLOO - Register</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="public/favicon.ico">
+    <title>Mood Cloud</title>
 
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <!-- Vendor css -->
+    <link rel="stylesheet" href="{{ url('frontend/css/materialdesignicons.min.css') }}">
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500&family=Jost:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Base css with customised bootstrap included -->
+    <link rel="stylesheet" href="{{ url('frontend/css/miri-ui-kit-free.css') }}">
 
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Stylesheet for demo page specific css -->
+    <link rel="stylesheet" href="{{ url('frontend/css/demo.css') }}">
 
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="{{url('frontend/css/bootstrap.min.css')}}" rel="stylesheet">
-
-    <!-- Template Stylesheet -->
-    <link href="{{url('frontend/css/style.css')}}" rel="stylesheet">
 </head>
-<body class="antialiased bg-gray-100">
-    <div class="container-xxl bg-white p-0">
+<body class="login-page">
+    <header class="miri-ui-kit-header header-no-bg-img header-navbar-only">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-on-scroll">
+            <div class="container">
+                <a class="navbar-brand" href="index.html"><img src="frontend/images/mood-cloud-logo.png" alt=""></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#miriUiKitNavbar"
+                    aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+            
+                <div class="collapse navbar-collapse" id="miriUiKitNavbar">
+                    <div class="navbar-nav ml-auto">
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="http://bootstrapdash.com/demo/miri-ui-kit-free/documentation/documentation.html" target="_blank">Docs</span></a>
+                        </li> -->
+            
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="index.html">UI Kits</a>
+                        </li> -->
 
-        <!-- Registration Form Start -->
-        <div class="container-xxl py-5" id="register">
-            <div class="container py-5 px-lg-5">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <div class="text-center mb-4">
-                        <h1 class="text-primary">IGLOO</h1>
-                            <h5 class="text-primary-gradient fw-medium">Create a New Account</h5>
-                            <h1 class="mb-4">Register Here</h1>
-                        </div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route(name: 'welcome') }}">Home</a>
+                        </li>
 
-                        <!-- Registration Form -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">About</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">Login</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">Register</a>
+                        </li>
+                    </div>
+                </div>
+            </div>
+        </nav>    
+    </header>
+    <div class="card login-card">
+        <div class="card-body">
+            <h3 class="text-center text-white font-weight-light mb-4">Register</h3>
+*
                         <form method="POST" action="{{ route('register') }}" id="register-form">
                             @csrf
 
                             <!-- Name -->
                             <div class="form-floating mb-3">
-                                <input id="name" class="form-control" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name" placeholder="Your Name">
-                                <label for="name">Your Name</label>
-                                <div class="text-danger" id="name-error"></div>
+                                <input id="name" class="form-control" type="text" name="name" value="{{ old('name') }}" placeholder="Name">
                             </div>
 
                             <!-- Email Address -->
-                            <div class="form-floating mb-3">
-                                <input id="email" class="form-control" type="email" name="email" value="{{ old('email') }}" required autocomplete="username" placeholder="Your Email">
-                                <label for="email">Your Email</label>
-                                <div class="text-danger" id="email-error"></div>
+                            <div class="form-group">
+                                <input type="email" id="email" class="form-control" type="email" name="email" placeholder="Email">
                             </div>
 
                             <!-- Password -->
                             <div class="form-floating mb-3">
-                                <input id="password" class="form-control" type="password" name="password" required autocomplete="new-password" placeholder="Password">
-                                <label for="password">Password</label>
-                                <div class="text-danger" id="password-error"></div>
+                                <input type="password" id="password" class="form-control" type="password" name="password" placeholder="Password">
                             </div>
 
                             <!-- Confirm Password -->
                             <div class="form-floating mb-3">
-                                <input id="password_confirmation" class="form-control" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
+                                <input id="password_confirmation" class="form-control" type="password" name="password_confirmation" placeholder="Confirm Password">
                                 <label for="password_confirmation">Confirm Password</label>
                                 <div class="text-danger" id="password_confirmation-error"></div>
                             </div>
 
                             <div class="d-flex justify-content-between mt-4">
                                 <!-- Already Registered Link -->
-                                <a href="{{ route('login') }}" class="text-decoration-none">Already registered?</a>
+                                <p class="text-white text-center font-weight-light"><a href="{{ route('login') }}"  class="text-white">Already registered?</a></p>
+                            </div> 
 
-                                <!-- Submit Button -->
-                                <button type="submit" class="btn btn-primary-gradient rounded-pill py-3 px-5">Register</button>
-                                
-                            </div>
+                            <!-- Submit Button -->
+                            <input type="submit" value="Login" class="btn btn-danger btn-block mb-3">
+
                         </form>
-                    </div>
-                </div>
             </div>
         </div>
-        <!-- Registration Form End -->
     </div>
-
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Form Validation (optional) -->
-    <script>
-        document.getElementById('register-form').addEventListener('submit', function(event) {
-            let hasErrors = false;
-
-            // Clear previous error messages
-            document.getElementById('name-error').textContent = '';
-            document.getElementById('email-error').textContent = '';
-            document.getElementById('password-error').textContent = '';
-            document.getElementById('password_confirmation-error').textContent = '';
-
-            // Check if name is entered
-            const name = document.getElementById('name').value;
-            if (!name) {
-                document.getElementById('name-error').textContent = 'Please enter your name.';
-                hasErrors = true;
-            }
-
-            // Check if email is valid
-            const email = document.getElementById('email').value;
-            if (!email || !email.includes('@')) {
-                document.getElementById('email-error').textContent = 'Please enter a valid email.';
-                hasErrors = true;
-            }
-
-            // Check if password is entered
-            const password = document.getElementById('password').value;
-            if (!password) {
-                document.getElementById('password-error').textContent = 'Please enter your password.';
-                hasErrors = true;
-            }
-
-            // Check if passwords match
-            const passwordConfirmation = document.getElementById('password_confirmation').value;
-            if (password !== passwordConfirmation) {
-                document.getElementById('password_confirmation-error').textContent = 'Passwords do not match.';
-                hasErrors = true;
-            }
-
-            // If errors, prevent form submission
-            if (hasErrors) {
-                event.preventDefault();
-            }
-        });
-    </script>
+    <footer>
+        <div class="container">
+            <nav class="navbar navbar-dark bg-transparent navbar-expand d-block d-sm-flex text-center justify-content-between">
+                <div class="d-flex">
+                    <span class="navbar-text py-0">Copyright © </span><a href="https://www.bootstrapdash.com/" target="_blank" class="text-white pl-1"> Bootstrapdash.com</a><span class="navbar-text py-0 pl-1">2020</span>
+                </div>
+                <div class="d-flex justify-content-start">
+                    <span class="text-small text-white mx-0 footer-link">Free  </span>
+                     <a href="https://www.bootstrapdash.com/ui-kit/" target="_blank" class="text-small text-white mx-1 footer-link">UI kits  </a> 
+                     <span href="#" class="text-small text-white mx-0 footer-link">from</span> <a href="https://www.bootstrapdash.com/" target="_blank" class="text-white pl-1"> Bootstrapdash.com</a>
+                </div>
+            </nav>
+        </div>
+    </footer>
+    <script src="../src/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="../src/vendors/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../src/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
