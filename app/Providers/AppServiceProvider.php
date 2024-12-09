@@ -23,6 +23,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Force HTTPS if the environment is not local
+        if (config('app.env') !== 'local') {
+            \URL::forceScheme('https');
+        }
+        
         Storage::extend('azure', function ($app, $config) {
             $client = BlobRestProxy::createBlobService($config['connection_string']);
             $adapter = new AzureBlobStorageAdapter(
