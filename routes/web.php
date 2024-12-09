@@ -6,14 +6,31 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 
+
+// Accessible after login
+Route::middleware(['auth'])->group(function () {
+    Route::get('/analyze', function () {
+        return view('analyze');
+    })->name('analyze');
+
+    Route::get('/history', function () {
+        return view('history');
+    })->name('history');
+});
+
+
 // Sentiment Analysis Routes
-Route::get('/', [SentimentController::class, 'index'])->name('welcome');
+Route::get('/', action: [SentimentController::class, 'index'])->name('welcome');
 Route::post('/analyze', [SentimentController::class, 'analyze'])->name('analyze');
 Route::get('/history', [SentimentController::class, 'history'])
     ->middleware('auth')
     ->name('history');
 Route::delete('/history/{id}', [SentimentController::class, 'destroy'])->name('history.destroy');
 
+
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
 
 Route::middleware('guest')->group(function () {
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
