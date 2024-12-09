@@ -75,7 +75,7 @@
     </header>
     <div class="card login-card">
         <div class="card-body">
-            <h3 class="text-center text-white font-weight-light mb-4">Login to your account</h3>
+            <h3 class="text-center text-white font-weight-bold mb-4">Login to your account</h3>
             <!-- <form action="/">
                 <div class="form-group">
                     <input type="text" placeholder="First name" class="form-control">
@@ -108,17 +108,7 @@
                                 <input type="password" id="password" class="form-control" type="password" name="password" placeholder="Password">
                             </div>
 
-                            <!-- Remember Me -->
-                            <!-- <div class="d-flex justify-content-between mb-4">
-                                <div>
-                                    <input type="checkbox" id="remember" name="remember">
-                                    <label for="remember" class="form-check-label">Remember Me</label>
-                                </div>
-                            </div> -->
-
-                            <!-- Submit Button -->
-
-                            <input type="submit" value="Login" class="btn btn-danger btn-block mb-3">
+                            <input type="submit" value="Login" class="btn btn-block mb-3" style="background-color: #d21486; color: white; border: none;">
 
                         </form>
 

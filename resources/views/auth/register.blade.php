@@ -60,7 +60,7 @@
     </header>
     <div class="card login-card">
         <div class="card-body">
-            <h3 class="text-center text-white font-weight-light mb-4">Register</h3>
+            <h3 class="text-center text-white font-weight-bold mb-4">Register</h3>
 *
                         <form method="POST" action="{{ route('register') }}" id="register-form">
                             @csrf
@@ -93,7 +93,7 @@
                             </div> 
 
                             <!-- Submit Button -->
-                            <input type="submit" value="Login" class="btn btn-danger btn-block mb-3">
+                            <input type="submit" value="Login" class="btn btn-block mb-3" style="background-color: #d21486; color: white; border: none;">
 
                         </form>
             </div>
