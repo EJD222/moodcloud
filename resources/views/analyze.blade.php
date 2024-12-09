@@ -97,10 +97,8 @@
                                 <label for="text-input" class="fw-bold mb-2">Enter Text for Analysis</label>
                                 <textarea name="text" class="form-control" id="text-input"
                                     placeholder="Type your text or click the mic icon to speak..."
-                                    style="height: 200px; padding-right: 50px;">
-Works like a champ! Easy to install and clone....OS now loads quickly. Everything is just perfect.
-{{ old('text') }}
-    </textarea>
+                                    style="height: 200px; padding-right: 50px;">{{ old('text') }}
+                                 </textarea>
                                 <!-- Mic Icon with Tooltip -->
                                 <button type="button" id="start-speech" class="position-absolute"
                                     data-bs-toggle="tooltip" data-bs-placement="top" title="Analyze by voice"
@@ -256,6 +254,9 @@ Works like a champ! Easy to install and clone....OS now loads quickly. Everythin
                                 </div>
 
 </div>     
+            <p class="mt-3 p-3 rounded bg-light shadow-sm text-center" style="font-size: 1.2rem; font-weight: bold;">
+                ${response.highlightedText}
+            </p>
             <!-- Positive and Negative Words as Word Cloud -->
             <div class="mt-5">
                 <div class="row">
@@ -263,16 +264,16 @@ Works like a champ! Easy to install and clone....OS now loads quickly. Everythin
                         <h4 class="">Positive Words</h4>
                         <div id="positive-word-cloud" style="height: 200px; background-color: #f0f9f0; border-radius: 10px; padding: 20px; overflow: hidden;">
                             ${response.positiveWords.length > 0 ?
-                                response.positiveWords.map(word => `<span class="positive-word" style="font-size: ${10 + Math.random() * 20}px;">${word}</span>`).join(' ') :
-                                "<p>No positive words found</p>"}
+                            response.positiveWords.map(word => `<span class="positive-word" style="font-size: ${10 + Math.random() * 20}px;">${word}</span>`).join(' ') :
+                            "<p>No positive words found</p>"}
                         </div>
                     </div>
                     <div class="col-md-6 text-center">
                         <h4 class="">Negative Words</h4>
                         <div id="negative-word-cloud" style="height: 200px; background-color: #f9f0f0; border-radius: 10px; padding: 20px; overflow: hidden;">
                             ${response.negativeWords.length > 0 ?
-                                response.negativeWords.map(word => `<span class="negative-word" style="font-size: ${10 + Math.random() * 20}px;">${word}</span>`).join(' ') :
-                                "<p>No negative words found</p>"}
+                            response.negativeWords.map(word => `<span class="negative-word" style="font-size: ${10 + Math.random() * 20}px;">${word}</span>`).join(' ') :
+                            "<p>No negative words found</p>"}
                         </div>
                     </div>
                 </div>
