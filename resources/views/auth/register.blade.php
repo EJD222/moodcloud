@@ -93,7 +93,7 @@
                             </div> 
 
                             <!-- Submit Button -->
-                            <input type="submit" value="Login" class="btn btn-block mb-3" style="background-color: #d21486; color: white; border: none;">
+                            <input type="submit" value="Register" class="btn btn-block mb-3" style="background-color: #d21486; color: white; border: none;">
 
                         </form>
             </div>
