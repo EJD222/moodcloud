@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-6 d-flex flex-column justify-content-center">
                 <h6 class="text-warning mb-3">About</h5>
-                    <h2 class="h1 font-weight-semibold mb-4">MoodCloud is a versatile tool that can analyze and
+                    <h2 class="h1 font-weight-semibold mb-4">Mood Cloud is a versatile tool that can analyze and
                         translate various forms of content, including text, speech-to-text, audio files, and documents
                         (e.g., PDF or Word).
                     </h2>

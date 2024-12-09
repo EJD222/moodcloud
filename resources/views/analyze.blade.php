@@ -25,10 +25,11 @@
 
     #sentiment-bar {
         position: relative;
-        height: 20px;
         width: 100%;
-        background: linear-gradient(to right, red, yellow, green);
-        border-radius: 10px;
+        background: linear-gradient(to right, #d21486, #8c52ff, #f2fe72);
+        /* Updated colors */
+        border-radius: 15px;
+        /* Adjusted for smoother corners */
         margin: 20px 0;
     }
 
@@ -37,7 +38,7 @@
         top: -20px;
         left: 50%;
         transform: translateX(-50%);
-        font-size: 30px;
+        font-size: 45px;
         transition: left 0.5s;
     }
 
@@ -49,6 +50,30 @@
     #sentiment-info p {
         margin: 5px 0;
     }
+
+    .positive-word,
+    .negative-word {
+        display: inline-block;
+        margin: 5px;
+        font-weight: bold;
+        transition: transform 0.3s ease;
+    }
+
+    .positive-word:hover,
+    .negative-word:hover {
+        transform: scale(1.2);
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .positive-word {
+        color: #28a745;
+        /* Green for positive words */
+    }
+
+    .negative-word {
+        color: #dc3545;
+        /* Red for negative words */
+    }
 </style>
 
 <body>
@@ -56,7 +81,7 @@
         <div class="container py-5 px-lg-5">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="text-warning mb-3">Sentiment Analysis</h5>
-                <h1 class="mb-5">Analyze Text to Understand Its Emotional Tone</h1>
+                    <h1 class="mb-5">Analyze Text to Understand Its Emotional Tone</h1>
             </div>
 
             <div class="row justify-content-center">
@@ -91,10 +116,8 @@ Works like a champ! Easy to install and clone....OS now loads quickly. Everythin
                             <script
                                 src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
-
-
                             <!-- File Upload -->
-                             
+
                             <div class="form-group position-relative" style="width: 100%;">
                                 <label for="text-input" class="fw-bold mb-2">Upload a file (.txt, .pdf, .docx)</label>
                                 <input type="file" name="file" class="form-control" id="file"
@@ -189,22 +212,22 @@ Works like a champ! Easy to install and clone....OS now loads quickly. Everythin
                             <div class="wow fadeInUp" data-wow-delay="0.5s">
                                 <h1 class="text-center mt-5 mb-5">Sentiment Analysis Result</h1>
 
-<div class="text-center my-4">
-    <p style="font-size: 1.8rem; font-weight: bold;">
-        Overall Sentiment:
-    </p>
-    <p style="font-size: 2rem; font-weight: bold; color: ${response.sentiment === 'POSITIVE' ? 'green' : response.sentiment === 'NEGATIVE' ? 'red' : 'black'};">
-        ${response.sentiment}
-    </p>
-</div>
+    <div class="text-center my-4">
+        <p style="font-size: 1.8rem; font-weight: bold;">
+            Overall Sentiment:
+        </p>
+        <p style="font-size: 2rem; font-weight: bold; color: ${response.sentiment === 'POSITIVE' ? 'green' : response.sentiment === 'NEGATIVE' ? 'red' : 'black'};">
+            ${response.sentiment}
+        </p>
+    </div>
 
                                 <!-- Sentiment Details as Cards -->
                                 <div class="row text-center">
                                     <div class="col-md-4 mb-3">
                                         <div class="card shadow-sm border-primary">
                                             <div class="card-body">
-                                                <h5 class="card-title text-primary">Sentiment Score</h5>
-                                                <p class="card-text" style="font-size: 1.2rem; font-weight: bold;">
+                                                <h5 class="text-primary">Sentiment Score</h5>
+                                                <p class="card-text" style="font-size: 2.5rem; font-weight: bold;">
                                                     ${response.score}
                                                 </p>
                                             </div>
@@ -213,8 +236,8 @@ Works like a champ! Easy to install and clone....OS now loads quickly. Everythin
                                     <div class="col-md-4 mb-3">
                                         <div class="card shadow-sm border-success">
                                             <div class="card-body">
-                                                <h5 class="card-title text-success">Positive Words</h5>
-                                                <p class="card-text" style="font-size: 1.2rem; font-weight: bold;">
+                                                <h5 class="text-success">Positive Words</h5>
+                                                <p class="card-text" style="font-size: 2.5rem; font-weight: bold;">
                                                     ${response.positiveCount}
                                                 </p>
                                             </div>
@@ -223,8 +246,8 @@ Works like a champ! Easy to install and clone....OS now loads quickly. Everythin
                                     <div class="col-md-4 mb-3">
                                         <div class="card shadow-sm border-danger">
                                             <div class="card-body">
-                                                <h5 class="card-title text-danger">Negative Words</h5>
-                                                <p class="card-text" style="font-size: 1.2rem; font-weight: bold;">
+                                                <h5 class="text-danger">Negative Words</h5>
+                                                <p class="card-text" style="font-size: 2.5rem; font-weight: bold;">
                                                     ${response.negativeCount}
                                                 </p>
                                             </div>
@@ -232,39 +255,42 @@ Works like a champ! Easy to install and clone....OS now loads quickly. Everythin
                                     </div>
                                 </div>
 
-                                <!-- Sentiment Highlight -->
-                                <div id="sentiment-info" class="text-center mt-4">
-                                    <div id="sentiment-bar" class="position-relative mt-3" style="height: 10px; background-color: #f1f1f1; border-radius: 5px;">
-                                        <div id="sentiment-emoji" class="position-absolute" style="left: 50%; transform: translateX(-50%);">
-                                            😊
-                                        </div>
-                                    </div>
-                                    <p class="mt-3 p-3 rounded-lg bg-light shadow-sm" style="font-size: 1.1rem;">
-                                        ${response.highlightedText}
-                                    </p>
-                                    
-                                    <!-- Positive and Negative Words -->
-                                    <div class="mt-4">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <h4 class="text-success">Positive Words</h4>
-                                                <ul class="list-unstyled">
-                                                    ${response.positiveWords.length > 0 ?
-                            response.positiveWords.map(word => `<li class="text-success">${word}</li>`).join('') :
-                            "<li>No positive words found</li>"}
-                                                </ul>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h4 class="text-danger">Negative Words</h4>
-                                                <ul class="list-unstyled">
-                                                    ${response.negativeWords.length > 0 ?
-                            response.negativeWords.map(word => `<li class="text-danger">${word}</li>`).join('') :
-                            "<li>No negative words found</li>"}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+</div>     
+            <!-- Positive and Negative Words as Word Cloud -->
+            <div class="mt-5">
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        <h4 class="">Positive Words</h4>
+                        <div id="positive-word-cloud" style="height: 200px; background-color: #f0f9f0; border-radius: 10px; padding: 20px; overflow: hidden;">
+                            ${response.positiveWords.length > 0 ?
+                                response.positiveWords.map(word => `<span class="positive-word" style="font-size: ${10 + Math.random() * 20}px;">${word}</span>`).join(' ') :
+                                "<p>No positive words found</p>"}
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <h4 class="">Negative Words</h4>
+                        <div id="negative-word-cloud" style="height: 200px; background-color: #f9f0f0; border-radius: 10px; padding: 20px; overflow: hidden;">
+                            ${response.negativeWords.length > 0 ?
+                                response.negativeWords.map(word => `<span class="negative-word" style="font-size: ${10 + Math.random() * 20}px;">${word}</span>`).join(' ') :
+                                "<p>No negative words found</p>"}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sentiment Bar -->
+            <div id="sentiment-info" class="text-center mt-5" style="margin-top: 50px; padding-top: 20px;">
+                <p style="font-size: 1.8rem; font-weight: bold; margin-bottom: 20px;">
+                    Emotion Meter:
+                </p>
+                <div id="sentiment-bar" class="position-relative mt-3" style="height: 30px; background-color: #f1f1f1; border-radius: 5px;">
+                    <div id="sentiment-emoji" class="position-absolute" style="left: 50%; transform: translateX(-50%);">
+                        😊
+                    </div>
+                </div>
+            </div>
+
+
                             </div>
                         </div>
                     `);
