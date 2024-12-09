@@ -18,32 +18,26 @@
     <link rel="stylesheet" href="{{ url('frontend/css/demo.css') }}">
 
 </head>
+
 <body class="login-page">
     <header class="miri-ui-kit-header header-no-bg-img header-navbar-only">
         <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-on-scroll">
             <div class="container">
-                <a class="navbar-brand" href="{{ route(name: 'welcome') }}"><img src="frontend/images/mood-cloud-logo.png" alt=""></a>
+                <a class="navbar-brand" href="{{ route(name: 'welcome') }}"><img
+                        src="frontend/images/mood-cloud-logo.png" alt=""></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#miriUiKitNavbar"
                     aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="mdi mdi-menu"></span>
                 </button>
-            
+
                 <div class="collapse navbar-collapse" id="miriUiKitNavbar">
                     <div class="navbar-nav ml-auto">
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="http://bootstrapdash.com/demo/miri-ui-kit-free/documentation/documentation.html" target="_blank">Docs</span></a>
-                        </li> -->
-            
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="index.html">UI Kits</a>
-                        </li> -->
-
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route(name: 'welcome') }}">Home</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html">About</a>
+                            <a class="nav-link" href="{{ route('about') }}">About</a>
                         </li>
 
                         <li class="nav-item">
@@ -53,76 +47,46 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">Register</a>
                         </li>
-
-                        <!-- <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                                Example Pages
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right ">
-                                <a href="landing.html" class="dropdown-item"><i class="dropdown-item-icon mdi mdi-shape-outline"></i>Landing Page</a>
-                                <a href="login.html" class="dropdown-item"><i class="dropdown-item-icon mdi mdi-lock-outline"></i>Login Page</a>
-                                <a href="profile.html" class="dropdown-item"><i class="dropdown-item-icon mdi mdi-shield-account-outline"></i>Profile Page</a>
-                            </div>
-                        </li> -->
-            
-                        <!-- <form action="https://www.bootstrapdash.com/product/miri-ui-pro/" target="_blank"class="form-inline ml-lg-3">
-                            <button class="btn btn-danger">Register</button>
-                        </form> -->
                     </div>
                 </div>
             </div>
-        </nav>    
+        </nav>
     </header>
     <div class="card login-card">
         <div class="card-body">
             <h3 class="text-center text-white font-weight-bold mb-4">Login to your account</h3>
-            <!-- <form action="/">
+
+            <form method="POST" action="/login" id="login-form">
+                <!-- CSRF Token -->
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                <!-- Email Address -->
                 <div class="form-group">
-                    <input type="text" placeholder="First name" class="form-control">
+                    <input type="email" id="email" class="form-control" type="email" name="email" placeholder="Email">
                 </div>
-                <div class="form-group">
-                    <input type="text" placeholder="Password" class="form-control">
+
+                <!-- Password -->
+                <div class="form-floating mb-3">
+                    <input type="password" id="password" class="form-control" type="password" name="password"
+                        placeholder="Password">
                 </div>
-                <input type="submit" value="Login" class="btn btn-danger btn-block mb-3">
-            </form> -->
 
-                        <form method="POST" action="/login" id="login-form">
-                            <!-- CSRF Token -->
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="submit" value="Login" class="btn btn-block mb-3"
+                    style="background-color: #d21486; color: white; border: none;">
 
-                            <!-- Email Address -->
-                            <div class="form-group">
-                                <!-- <input id="email" class="form-control" type="email" name="email" required autofocus autocomplete="username" placeholder="Your Email">
-                                <label for="email">Your Email</label>
-                                <div class="text-danger" id="email-error"></div> -->
+            </form>
 
-                                <input type="email" id="email" class="form-control" type="email" name="email" placeholder="Email">
-                            </div>
-
-                            <!-- Password -->
-                            <div class="form-floating mb-3">
-                                <!-- <input id="password" class="form-control" type="password" name="password" required autocomplete="current-password" placeholder="Password">
-                                <label for="password">Password</label>
-                                <div class="text-danger" id="password-error"></div> -->
-
-                                <input type="password" id="password" class="form-control" type="password" name="password" placeholder="Password">
-                            </div>
-
-                            <input type="submit" value="Login" class="btn btn-block mb-3" style="background-color: #d21486; color: white; border: none;">
-
-                        </form>
-
-                        <div class="d-flex justify-content-between mt-4">
-                            <p class="text-white text-center font-weight-light">Don't have an account? <a href="{{ route('register') }}" class="text-white"> Register here</a></p>
-                        </div> 
-
+            <div class="d-flex justify-content-between mt-4">
+                <p class="text-white text-center font-weight-light">
+                    Don't have an account?
+                    <a href="{{ route('register') }}" style="color: #f2fe72;">Register here</a>
+                </p>
             </div>
-
-
         </div>
     </div>
-    <script src="../src/vendors/jquery/dist/jquery.min.js"></script>
-    <script src="../src/vendors/popper.js/dist/umd/popper.min.js"></script>
-    <script src="../src/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="public/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="public/vendors/popper.js/dist/umd/popper.min.js"></script>
+    <script src="public/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
+
 </html>
