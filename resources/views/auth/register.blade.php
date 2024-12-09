@@ -22,7 +22,7 @@
     <header class="miri-ui-kit-header header-no-bg-img header-navbar-only">
         <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-on-scroll">
             <div class="container">
-                <a class="navbar-brand" href="index.html"><img src="frontend/images/mood-cloud-logo.png" alt=""></a>
+                <a class="navbar-brand" href="{{ route(name: 'welcome') }}"><img src="frontend/images/mood-cloud-logo.png" alt=""></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#miriUiKitNavbar"
                     aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="mdi mdi-menu"></span>
@@ -99,20 +99,7 @@
             </div>
         </div>
     </div>
-    <footer>
-        <div class="container">
-            <nav class="navbar navbar-dark bg-transparent navbar-expand d-block d-sm-flex text-center justify-content-between">
-                <div class="d-flex">
-                    <span class="navbar-text py-0">Copyright © </span><a href="https://www.bootstrapdash.com/" target="_blank" class="text-white pl-1"> Bootstrapdash.com</a><span class="navbar-text py-0 pl-1">2020</span>
-                </div>
-                <div class="d-flex justify-content-start">
-                    <span class="text-small text-white mx-0 footer-link">Free  </span>
-                     <a href="https://www.bootstrapdash.com/ui-kit/" target="_blank" class="text-small text-white mx-1 footer-link">UI kits  </a> 
-                     <span href="#" class="text-small text-white mx-0 footer-link">from</span> <a href="https://www.bootstrapdash.com/" target="_blank" class="text-white pl-1"> Bootstrapdash.com</a>
-                </div>
-            </nav>
-        </div>
-    </footer>
+
     <script src="../src/vendors/jquery/dist/jquery.min.js"></script>
     <script src="../src/vendors/popper.js/dist/umd/popper.min.js"></script>
     <script src="../src/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
