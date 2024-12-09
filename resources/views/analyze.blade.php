@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @include('partials.header')
-<!-- Sentiment Analysis Start -->
+
 <style>
     #text-input {
         color: black;
@@ -22,14 +22,41 @@
         color: white;
         transition: background-color 0.3s ease-in-out;
     }
+
+    #sentiment-bar {
+        position: relative;
+        height: 20px;
+        width: 100%;
+        background: linear-gradient(to right, red, yellow, green);
+        border-radius: 10px;
+        margin: 20px 0;
+    }
+
+    #sentiment-emoji {
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 30px;
+        transition: left 0.5s;
+    }
+
+    #sentiment-info {
+        margin-top: 20px;
+        font-size: 1.2em;
+    }
+
+    #sentiment-info p {
+        margin: 5px 0;
+    }
 </style>
 
 <body>
     <div class="container-xxl py-5" id="sentiment-analysis">
         <div class="container py-5 px-lg-5">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h5 class="text-primary-gradient fw-medium">Sentiment Analysis</h5>
-                <h1 class="mb-5">Quickly Analyze Text to Understand Its Emotional Tone</h1>
+                <h6 class="text-warning mb-3">Sentiment Analysis</h5>
+                <h1 class="mb-5">Analyze Text to Understand Its Emotional Tone</h1>
             </div>
 
             <div class="row justify-content-center">
@@ -41,26 +68,34 @@
                             @csrf
 
                             <!-- Text Area with Mic Icon -->
-                            <div class="form-group position-relative">
+                            <div class="form-group position-relative" style="width: 100%;">
                                 <label for="text-input" class="fw-bold mb-2">Enter Text for Analysis</label>
                                 <textarea name="text" class="form-control" id="text-input"
                                     placeholder="Type your text or click the mic icon to speak..."
-                                    style="height: 200px; padding-right: 50px;">Works like a champ! Easy to install and clone....OS now loads quickly. Everything is just perfect.
-{{ old('text') }}</textarea>
-                                <!-- Mic Icon -->
-                                <button type="button" id="start-speech"
-                                    class="btn btn-primary rounded-circle position-absolute"
-                                    style="top: 10px; right: 10px; height: 40px; width: 40px;">🎤</button>
+                                    style="height: 200px; padding-right: 50px;">
+Works like a champ! Easy to install and clone....OS now loads quickly. Everything is just perfect.
+{{ old('text') }}
+    </textarea>
+                                <!-- Mic Icon with Tooltip -->
+                                <button type="button" id="start-speech" class="position-absolute"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Analyze by voice"
+                                    style="top: calc(100% - 40px); right: 15px; height: 30px; width: 30px; background: transparent; border: none; padding: 0;">
+                                    <i class="fas fa-microphone"></i>
+                                </button>
                             </div>
 
-                            <div class="text-center mt-3">
-                                <button type="button" id="clear-text" class="btn btn-danger">Clear Text</button>
-                            </div>
+                            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+                                rel="stylesheet">
+                            <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+                                rel="stylesheet">
+                            <script
+                                src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+
 
                             <!-- File Upload -->
-
-
-                            <div class="form-floating mt-4 mb-3">
+                             
+                            <div class="form-group position-relative" style="width: 100%;">
                                 <label for="text-input" class="fw-bold mb-2">Upload a file (.txt, .pdf, .docx)</label>
                                 <input type="file" name="file" class="form-control" id="file"
                                     aria-label="File Upload for Sentiment Analysis" accept=".txt,.pdf,.docx">
@@ -72,11 +107,13 @@
                             <!-- Action Buttons -->
                             <div class="col-12 text-center mt-4">
                                 <div class="justify-content-center gap-6">
-                                    <button type="submit" class="btn btn-primary py-3 px-5">
+                                    <button type="submit" class="btn py-3 px-5"
+                                        style="background-color: #d21486; color: white; border: none;">
                                         <i class="fas fa-search"></i> Run Analysis
                                     </button>
 
-                                    <a href="{{ route('history') }}" class="btn btn-secondary py-3 px-5">
+                                    <a href="{{ route('history') }}" class="btn py-3 px-5"
+                                        style="background-color: #d21486; color: white; border: none;">
                                         <i class="fas fa-history"></i> View History
                                     </a>
                                 </div>
@@ -154,7 +191,7 @@
 
 <div class="text-center my-4">
     <p style="font-size: 1.8rem; font-weight: bold;">
-        Tone of Text:
+        Overall Sentiment:
     </p>
     <p style="font-size: 2rem; font-weight: bold; color: ${response.sentiment === 'POSITIVE' ? 'green' : response.sentiment === 'NEGATIVE' ? 'red' : 'black'};">
         ${response.sentiment}
@@ -212,17 +249,17 @@
                                             <div class="col-md-6">
                                                 <h4 class="text-success">Positive Words</h4>
                                                 <ul class="list-unstyled">
-                                                    ${response.positiveWords.length > 0 ? 
-                                                        response.positiveWords.map(word => `<li class="text-success">${word}</li>`).join('') : 
-                                                        "<li>No positive words found</li>"}
+                                                    ${response.positiveWords.length > 0 ?
+                            response.positiveWords.map(word => `<li class="text-success">${word}</li>`).join('') :
+                            "<li>No positive words found</li>"}
                                                 </ul>
                                             </div>
                                             <div class="col-md-6">
                                                 <h4 class="text-danger">Negative Words</h4>
                                                 <ul class="list-unstyled">
-                                                    ${response.negativeWords.length > 0 ? 
-                                                        response.negativeWords.map(word => `<li class="text-danger">${word}</li>`).join('') : 
-                                                        "<li>No negative words found</li>"}
+                                                    ${response.negativeWords.length > 0 ?
+                            response.negativeWords.map(word => `<li class="text-danger">${word}</li>`).join('') :
+                            "<li>No negative words found</li>"}
                                                 </ul>
                                             </div>
                                         </div>
@@ -288,10 +325,4 @@
     } else {
         console.log('Speech recognition not supported in this browser.');
     }
-</script>
-
-<script>
-    document.getElementById('clear-text').addEventListener('click', function () {
-        document.getElementById('text-input').value = '';
-    });
 </script>
